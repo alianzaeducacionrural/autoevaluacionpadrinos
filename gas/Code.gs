@@ -158,10 +158,15 @@ function doGet(e) {
 }
 
 /**
- * Serializa un objeto como respuesta JSON.
+ * Serializa un objeto como respuesta JSON con caracteres no-ASCII escapados
+ * (\uXXXX) para que el cuerpo sea ASCII puro y no haya ambigüedad de
+ * codificación entre ContentService y el navegador.
  */
 function jsonResponse_(obj) {
+  var json = JSON.stringify(obj).replace(/[^\x00-\x7F]/g, function (c) {
+    return '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4);
+  });
   return ContentService
-    .createTextOutput(JSON.stringify(obj))
+    .createTextOutput(json)
     .setMimeType(ContentService.MimeType.JSON);
 }

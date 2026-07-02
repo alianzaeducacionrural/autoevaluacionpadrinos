@@ -13,6 +13,15 @@ function assertUrl() {
   }
 }
 
+// Escapa caracteres no-ASCII como \uXXXX para que el cuerpo del POST sea ASCII
+// puro y no haya ambigüedad de codificación al llegar a Apps Script.
+function safeJSON(data) {
+  return JSON.stringify(data).replace(
+    /[^\x00-\x7F]/g,
+    (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`,
+  )
+}
+
 /**
  * Envía una autoevaluación al Apps Script (doPost).
  * Usa Content-Type "text/plain" a propósito: evita el preflight OPTIONS de
@@ -23,7 +32,7 @@ export async function enviarAutoevaluacion(data) {
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(data),
+    body: safeJSON(data),
     redirect: 'follow',
   })
   if (!res.ok) {
