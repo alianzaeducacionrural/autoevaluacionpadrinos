@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#6366f1"/>
+  <!-- Persona / silueta -->
+  <circle cx="16" cy="11" r="4" fill="white"/>
+  <!-- Checkmark superpuesto (autoevaluación) -->
+  <path d="M16 17c-4.418 0-8 1.79-8 4v1h16v-1c0-2.21-3.582-4-8-4z" fill="white"/>
+  <!-- Check badge -->
+  <circle cx="23" cy="9" r="5" fill="#4f46e5" stroke="white" stroke-width="1.5"/>
+  <path d="M20.5 9l1.8 1.8 2.7-2.7" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
