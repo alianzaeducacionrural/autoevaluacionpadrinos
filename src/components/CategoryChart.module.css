@@ -1,0 +1,14 @@
+.wrap {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.titulo {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  color: var(--verde-dark);
+}

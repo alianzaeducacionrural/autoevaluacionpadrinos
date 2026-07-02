@@ -1,0 +1,49 @@
+:root {
+  /* Paleta — Comité de Cafeteros de Caldas / Área de Educación */
+  --verde: #1e7a35;
+  --verde-dark: #1a6128;
+  --verde-light: #e8f3ea;
+  --fondo: #f4f6f8;
+  --superficie: #ffffff;
+  --borde: #e2e8f0;
+  --texto: #1e293b;
+  --texto-suave: #64748b;
+  --error: #dc2626;
+  --error-light: #fef2f2;
+
+  --radio: 12px;
+  --radio-pill: 999px;
+  --sombra: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --sombra-md: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --transicion: 0.2s ease;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--texto);
+  background-color: var(--fondo);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+button {
+  font-family: inherit;
+}

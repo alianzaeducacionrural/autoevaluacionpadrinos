@@ -1,0 +1,126 @@
+.tablaWrap {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla th {
+  background: var(--verde-light);
+  color: var(--verde-dark);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 3rem;
+  text-align: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radio-pill);
+  background: var(--verde-light);
+  color: var(--verde-dark);
+  font-weight: 700;
+}
+
+.verBtn {
+  border: 1px solid var(--verde);
+  background: var(--superficie);
+  color: var(--verde-dark);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radio-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transicion);
+  white-space: nowrap;
+}
+
+.verBtn:hover {
+  background: var(--verde);
+  color: #fff;
+}
+
+.celdaDetalle {
+  background: #f8fafc;
+  padding: 0 !important;
+}
+
+.detalle {
+  padding: 1.25rem 1.5rem;
+}
+
+.grupo {
+  margin-bottom: 1.5rem;
+}
+
+.grupo:last-child {
+  margin-bottom: 0;
+}
+
+.grupoTitulo {
+  margin: 0 0 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--verde-dark);
+  border-bottom: 2px solid var(--verde-light);
+  padding-bottom: 0.35rem;
+}
+
+.itemLikert {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--borde);
+}
+
+.itemTexto {
+  color: var(--texto);
+}
+
+.itemValor {
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--verde-dark);
+}
+
+.itemAbierto {
+  margin-bottom: 0.9rem;
+}
+
+.preguntaAbierta {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+  color: var(--texto);
+  font-size: 0.88rem;
+}
+
+.respuestaAbierta {
+  margin: 0;
+  color: var(--texto-suave);
+  white-space: pre-wrap;
+}
+
+.vacio {
+  text-align: center;
+  color: var(--texto-suave);
+  padding: 2rem;
+}

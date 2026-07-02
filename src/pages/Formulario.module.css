@@ -1,0 +1,175 @@
+.form {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.intro {
+  margin-bottom: 1.5rem;
+}
+
+.intro h1 {
+  font-size: 1.5rem;
+  color: var(--verde-dark);
+  margin: 0 0 0.5rem;
+}
+
+.intro p {
+  color: var(--texto-suave);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.campo {
+  margin-bottom: 1.1rem;
+}
+
+.etiqueta {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--texto);
+}
+
+.asterisco {
+  color: var(--error);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 0.95rem;
+  background: var(--superficie);
+  color: var(--texto);
+  transition: border-color var(--transicion);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--verde);
+}
+
+.textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.inputError {
+  border-color: var(--error);
+  background: var(--error-light);
+}
+
+.escalaNota {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--verde-light);
+  border-radius: var(--radio);
+  font-size: 0.85rem;
+  color: var(--verde-dark);
+  text-align: center;
+}
+
+.aviso {
+  background: var(--error-light);
+  color: var(--error);
+  border: 1px solid #fecaca;
+  border-radius: var(--radio);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.errorBanner {
+  background: var(--error-light);
+  color: var(--error);
+  border: 1px solid #fecaca;
+  border-radius: var(--radio);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.enviar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: var(--radio);
+  background: linear-gradient(135deg, #1e7a35, #1a6128);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--transicion);
+}
+
+.enviar:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.enviar:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: girar 0.7s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.confirmacion {
+  max-width: 520px;
+  margin: 4rem auto;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-md);
+}
+
+.confirmacion h1 {
+  color: var(--verde-dark);
+  font-size: 1.4rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.confirmacion p {
+  color: var(--texto-suave);
+  margin: 0;
+}
+
+.checkCirculo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--verde-light);
+  color: var(--verde);
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,84 @@
+.pagina {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 4rem;
+}
+
+.cabecera {
+  margin-bottom: 1.5rem;
+}
+
+.cabecera h1 {
+  font-size: 1.5rem;
+  color: var(--verde-dark);
+  margin: 0 0 0.35rem;
+}
+
+.cabecera p {
+  color: var(--texto-suave);
+  margin: 0;
+}
+
+.estado {
+  color: var(--texto-suave);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.errorBanner {
+  background: var(--error-light);
+  color: var(--error);
+  border: 1px solid #fecaca;
+  border-radius: var(--radio);
+  padding: 0.85rem 1rem;
+}
+
+.resumen {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1rem 1.75rem;
+}
+
+.statNumero {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--verde);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+}
+
+.filtroWrap {
+  margin-bottom: 1rem;
+}
+
+.filtro {
+  width: 100%;
+  max-width: 340px;
+  padding: 0.6rem 0.85rem;
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+  font-size: 0.95rem;
+}
+
+.filtro:focus {
+  outline: none;
+  border-color: var(--verde);
+}

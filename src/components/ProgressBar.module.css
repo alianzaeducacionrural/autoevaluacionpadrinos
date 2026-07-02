@@ -1,0 +1,46 @@
+.wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+  box-shadow: var(--sombra);
+  padding: 0.85rem 1.25rem 0.75rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.marca {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.contador {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--verde-dark);
+  background: var(--verde-light);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radio-pill);
+  white-space: nowrap;
+}
+
+.fondo {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: var(--radio-pill);
+  overflow: hidden;
+}
+
+.relleno {
+  height: 100%;
+  background: linear-gradient(90deg, #1a6128 0%, #7bbd20 100%);
+  border-radius: var(--radio-pill);
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
