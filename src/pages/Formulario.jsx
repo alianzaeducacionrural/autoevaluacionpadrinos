@@ -2,32 +2,24 @@ import { useMemo, useState } from 'react'
 import {
   categories,
   openSections,
+  likertScale,
   likertFieldIds,
   openFieldIds,
 } from '../config/formConfig'
 import { team } from '../config/team'
 import { enviarAutoevaluacion } from '../services/api'
-import ProgressBar from '../components/ProgressBar'
 import CategoryCard from '../components/CategoryCard'
 import LikertQuestion from '../components/LikertQuestion'
 import styles from './Formulario.module.css'
 
 const HOY = new Date().toISOString().slice(0, 10)
 
-/** Estado inicial: profesional/fecha + likert en null + abiertas en ''. */
 function estadoInicial() {
   const base = { profesional: '', fecha: HOY }
-  likertFieldIds.forEach((id) => {
-    base[id] = null
-  })
-  openFieldIds.forEach((id) => {
-    base[id] = ''
-  })
+  likertFieldIds.forEach((id) => { base[id] = null })
+  openFieldIds.forEach((id) => { base[id] = '' })
   return base
 }
-
-// Total de campos obligatorios: profesional + 18 Likert + 6 abiertas.
-const TOTAL_OBLIGATORIOS = 1 + likertFieldIds.length + openFieldIds.length
 
 export default function Formulario() {
   const [datos, setDatos] = useState(estadoInicial)
@@ -40,29 +32,11 @@ export default function Formulario() {
     setDatos((prev) => ({ ...prev, [id]: valor }))
   }
 
-  // Cuenta de obligatorios respondidos, para la barra de progreso.
-  const respondidas = useMemo(() => {
-    let n = 0
-    if (datos.profesional) n++
-    likertFieldIds.forEach((id) => {
-      if (datos[id] != null) n++
-    })
-    openFieldIds.forEach((id) => {
-      if (datos[id] && datos[id].trim()) n++
-    })
-    return n
-  }, [datos])
-
-  // IDs de campos obligatorios sin responder (para marcar en rojo tras intentar enviar).
   const faltantes = useMemo(() => {
     const f = new Set()
     if (!datos.profesional) f.add('profesional')
-    likertFieldIds.forEach((id) => {
-      if (datos[id] == null) f.add(id)
-    })
-    openFieldIds.forEach((id) => {
-      if (!datos[id] || !datos[id].trim()) f.add(id)
-    })
+    likertFieldIds.forEach((id) => { if (datos[id] == null) f.add(id) })
+    openFieldIds.forEach((id) => { if (!datos[id]?.trim()) f.add(id) })
     return f
   }, [datos])
 
@@ -71,17 +45,16 @@ export default function Formulario() {
     setErrorEnvio('')
     if (faltantes.size > 0) {
       setIntentoEnvio(true)
-      // Sube a la primera sección incompleta.
-      const primero = document.querySelector(`[data-campo="${[...faltantes][0]}"]`)
-      primero?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      document
+        .querySelector(`[data-campo="${[...faltantes][0]}"]`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
       return
     }
-
     setEnviando(true)
     try {
-      const payload = { id: crypto.randomUUID(), ...datos }
-      await enviarAutoevaluacion(payload)
+      await enviarAutoevaluacion({ id: crypto.randomUUID(), ...datos })
       setEnviado(true)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (err) {
       setErrorEnvio(err.message || 'Ocurrió un error al enviar. Intenta de nuevo.')
     } finally {
@@ -95,26 +68,63 @@ export default function Formulario() {
         <div className={styles.checkCirculo}>✓</div>
         <h1>¡Autoevaluación registrada!</h1>
         <p>
-          Tu autoevaluación fue registrada correctamente. Gracias por completar el
-          ejercicio de reflexión.
+          Tu autoevaluación fue registrada correctamente. Gracias por tomarte el tiempo
+          de reflexionar sobre tu trabajo.
         </p>
       </div>
     )
   }
 
   return (
-    <>
-      <ProgressBar respondidas={respondidas} total={TOTAL_OBLIGATORIOS} />
+    <div className={styles.pagina}>
+      {/* ── Hero ── */}
+      <header className={styles.hero}>
+        <div className={styles.heroInner}>
+          <span className={styles.kicker}>Área de Educación · Comité de Cafeteros de Caldas</span>
+          <h1 className={styles.heroTitulo}>
+            Diálogo de Desempeño y<br />Crecimiento Profesional
+          </h1>
+
+          <div className={styles.bloques}>
+            <div className={styles.bloque}>
+              <span className={styles.bloqueLabel}>Objetivo</span>
+              <p className={styles.bloqueTexto}>
+                Promover un ejercicio de autoevaluación y reflexión sobre el desempeño
+                individual, mediante la valoración de aspectos clave del ejercicio
+                profesional, con el fin de reconocer fortalezas, identificar oportunidades
+                de mejora y establecer compromisos que contribuyan al fortalecimiento del
+                equipo y a la calidad de los procesos de acompañamiento.
+              </p>
+            </div>
+            <div className={styles.bloque}>
+              <span className={styles.bloqueLabel}>Instrucciones</span>
+              <p className={styles.bloqueTexto}>
+                Este no es un ejercicio de calificación, sino una oportunidad para
+                reflexionar sobre nuestra práctica profesional. La invitación es a
+                responder con honestidad, reconociendo los logros alcanzados y aquellos
+                aspectos que pueden fortalecerse. La información servirá como insumo para
+                la retroalimentación individual y la construcción de acciones de
+                mejoramiento continuo.
+              </p>
+            </div>
+          </div>
+
+          {/* Escala */}
+          <div className={styles.escala}>
+            <span className={styles.escalaTitulo}>Escala de valoración</span>
+            <div className={styles.escalaChips}>
+              {likertScale.map((op) => (
+                <span key={op.value} className={styles.chip}>
+                  <span className={styles.chipNum}>{op.value}</span>
+                  {op.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </header>
 
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
-        <header className={styles.intro}>
-          <h1>Diálogo de Desempeño y Crecimiento Profesional</h1>
-          <p>
-            Área de Educación — Comité de Cafeteros de Caldas. Responde con
-            honestidad; este es un ejercicio de reflexión personal.
-          </p>
-        </header>
-
         {/* Datos generales */}
         <CategoryCard title="Datos generales">
           <div className={styles.campo} data-campo="profesional">
@@ -125,38 +135,28 @@ export default function Formulario() {
               id="profesional"
               value={datos.profesional}
               onChange={(e) => setCampo('profesional', e.target.value)}
-              className={`${styles.select} ${
-                intentoEnvio && faltantes.has('profesional') ? styles.inputError : ''
+              className={`${styles.control} ${
+                intentoEnvio && faltantes.has('profesional') ? styles.controlError : ''
               }`}
             >
               <option value="">Selecciona tu nombre…</option>
               {team.map((nombre) => (
-                <option key={nombre} value={nombre}>
-                  {nombre}
-                </option>
+                <option key={nombre} value={nombre}>{nombre}</option>
               ))}
             </select>
           </div>
 
           <div className={styles.campo}>
-            <label htmlFor="fecha" className={styles.etiqueta}>
-              Fecha
-            </label>
+            <label htmlFor="fecha" className={styles.etiqueta}>Fecha</label>
             <input
               id="fecha"
               type="date"
               value={datos.fecha}
               onChange={(e) => setCampo('fecha', e.target.value)}
-              className={styles.input}
+              className={styles.control}
             />
           </div>
         </CategoryCard>
-
-        {/* Escala de referencia */}
-        <p className={styles.escalaNota}>
-          Escala: <strong>4</strong> Siempre · <strong>3</strong> Casi siempre ·{' '}
-          <strong>2</strong> Algunas veces · <strong>1</strong> Rara vez
-        </p>
 
         {/* Categorías Likert */}
         {categories.map((cat, i) => (
@@ -187,8 +187,9 @@ export default function Formulario() {
                   rows={4}
                   value={datos[q.id]}
                   onChange={(e) => setCampo(q.id, e.target.value)}
-                  className={`${styles.textarea} ${
-                    intentoEnvio && faltantes.has(q.id) ? styles.inputError : ''
+                  placeholder="Escribe tu reflexión…"
+                  className={`${styles.control} ${styles.textarea} ${
+                    intentoEnvio && faltantes.has(q.id) ? styles.controlError : ''
                   }`}
                 />
               </div>
@@ -207,14 +208,12 @@ export default function Formulario() {
 
         <button type="submit" className={styles.enviar} disabled={enviando}>
           {enviando ? (
-            <>
-              <span className={styles.spinner} /> Enviando…
-            </>
+            <><span className={styles.spinner} /> Enviando…</>
           ) : (
-            'Enviar autoevaluación'
+            'Enviar mi autoevaluación'
           )}
         </button>
       </form>
-    </>
+    </div>
   )
 }

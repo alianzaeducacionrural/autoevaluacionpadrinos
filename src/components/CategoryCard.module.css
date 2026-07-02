@@ -1,9 +1,9 @@
 .card {
   background: var(--superficie);
   border: 1px solid var(--borde);
-  border-radius: var(--radio);
+  border-radius: var(--radio-lg);
   box-shadow: var(--sombra);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
   overflow: hidden;
 }
 
@@ -12,28 +12,29 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
-  background: var(--verde-light);
   border-bottom: 1px solid var(--borde);
+  background: var(--superficie);
 }
 
 .indice {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
   border-radius: var(--radio-pill);
-  background: var(--verde);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 800;
 }
 
 .titulo {
   margin: 0;
-  font-size: 1.05rem;
-  color: var(--verde-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--texto);
 }
 
 .cuerpo {

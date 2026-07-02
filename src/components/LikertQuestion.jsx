@@ -2,8 +2,9 @@ import { likertScale } from '../config/formConfig'
 import styles from './LikertQuestion.module.css'
 
 /**
- * Una pregunta Likert: enunciado + 4 botones de la escala compartida.
- * Se usa role="radiogroup"/"radio" para forzar una sola respuesta por fila.
+ * Una pregunta Likert: enunciado + 4 opciones de la escala compartida.
+ * El estado seleccionado se pinta con `var(--accent)`, heredado de la
+ * CategoryCard contenedora (color propio de cada categoría).
  */
 export default function LikertQuestion({ question, value, onChange, error }) {
   return (

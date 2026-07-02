@@ -1,36 +1,51 @@
 :root {
-  /* Paleta — Comité de Cafeteros de Caldas / Área de Educación */
-  --verde: #1e7a35;
-  --verde-dark: #1a6128;
-  --verde-light: #e8f3ea;
-  --fondo: #f4f6f8;
+  /* ── Acento ── */
+  --accent: #6366f1;
+  --accent-dark: #4f46e5;
+  --accent-light: #eef2ff;
+
+  /* ── Superficies ── */
+  --fondo: #f8f9fc;
   --superficie: #ffffff;
-  --borde: #e2e8f0;
-  --texto: #1e293b;
-  --texto-suave: #64748b;
-  --error: #dc2626;
-  --error-light: #fef2f2;
+  --superficie-2: #f1f5f9;
 
+  /* ── Bordes ── */
+  --borde: rgba(15, 23, 42, 0.08);
+  --borde-fuerte: rgba(15, 23, 42, 0.15);
+
+  /* ── Tinta (4 niveles) ── */
+  --texto: #0f172a;
+  --texto-suave: #475569;
+  --texto-terc: #94a3b8;
+  --texto-mute: #cbd5e1;
+
+  /* ── Semánticos ── */
+  --error: #e11d48;
+  --error-light: #fff1f2;
+
+  /* ── Forma ── */
   --radio: 12px;
+  --radio-lg: 18px;
   --radio-pill: 999px;
-  --sombra: 0 1px 3px rgba(15, 23, 42, 0.08);
-  --sombra-md: 0 4px 16px rgba(15, 23, 42, 0.08);
-  --transicion: 0.2s ease;
 
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* ── Sombras ── */
+  --sombra: 0 1px 3px rgba(15, 23, 42, 0.07);
+  --sombra-md: 0 6px 20px rgba(15, 23, 42, 0.09);
+  --sombra-lg: 0 20px 48px rgba(15, 23, 42, 0.12);
+
+  --transicion: 0.18s ease;
+
+  font-family: 'Plus Jakarta Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   color: var(--texto);
   background-color: var(--fondo);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -38,12 +53,9 @@ body {
   min-height: 100vh;
 }
 
-h1,
-h2,
-h3 {
-  line-height: 1.2;
+h1, h2, h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
-button {
-  font-family: inherit;
-}
+button { font-family: inherit; }

@@ -1,0 +1,363 @@
+/* ── Tokens locales del modal (sistema independiente del formulario) ── */
+.overlay {
+  --i-bg: #f8f9fc;
+  --i-surface: #ffffff;
+  --i-surface2: #f1f5f9;
+  --i-border: rgba(15, 23, 42, 0.08);
+  --i-border-md: rgba(15, 23, 42, 0.14);
+  --i-text: #0f172a;
+  --i-text2: #475569;
+  --i-text3: #94a3b8;
+  --i-accent: #6366f1;
+  --i-accent-bg: #eef2ff;
+  --i-r: 12px;
+  --i-r-lg: 20px;
+  --i-font: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* score variants */
+  --emerald: #059669;
+  --emerald-bg: #ecfdf5;
+  --sky: #0284c7;
+  --sky-bg: #f0f9ff;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --rose: #e11d48;
+  --rose-bg: #fff1f2;
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to   { opacity: 1 }
+}
+
+.modal {
+  font-family: var(--i-font);
+  background: var(--i-surface);
+  border-radius: var(--i-r-lg);
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.06),
+    0 24px 48px -12px rgba(15, 23, 42, 0.25);
+  animation: slideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(18px); opacity: 0 }
+  to   { transform: translateY(0);    opacity: 1 }
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--i-border);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  background: var(--i-surface);
+  border-radius: var(--i-r-lg) var(--i-r-lg) 0 0;
+  z-index: 2;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.02em;
+}
+
+.headerInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nombre {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--i-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fechaTag {
+  font-size: 0.78rem;
+  color: var(--i-text3);
+  font-weight: 500;
+}
+
+.promGral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--i-r);
+  flex-shrink: 0;
+}
+
+.promNum {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.promLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  opacity: 0.7;
+}
+
+.cerrar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 1px solid var(--i-border-md);
+  border-radius: 50%;
+  background: var(--i-surface);
+  color: var(--i-text2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.cerrar:hover {
+  background: var(--i-surface2);
+  color: var(--i-text);
+}
+
+/* ── Body ── */
+.body {
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.seccionTitulo {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--i-text3);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--i-border);
+}
+
+/* ── Resumen categorías ── */
+.catGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.65rem;
+}
+
+.catCard {
+  background: var(--i-bg);
+  border: 1px solid var(--i-border);
+  border-radius: var(--i-r);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.catNombre {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--i-text2);
+  line-height: 1.3;
+}
+
+.catScore {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.catBarFondo {
+  height: 4px;
+  background: var(--i-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.catBarRelleno {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Lista de preguntas Likert ── */
+.preguntasList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.preguntaFila {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--i-border);
+}
+
+.preguntaFila:last-child {
+  border-bottom: none;
+}
+
+.preguntaTexto {
+  margin: 0;
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--i-text);
+}
+
+.scoreChip {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 72px;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--i-r);
+  gap: 0.05rem;
+}
+
+.scoreNum {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.scoreEtiq {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.vacio {
+  color: var(--i-text3);
+  background: var(--i-surface2);
+}
+
+/* ── Preguntas abiertas ── */
+.abiertasList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.abiertaCard {
+  border-left: 3px solid var(--i-accent);
+  padding: 0.75rem 1rem;
+  background: var(--i-accent-bg);
+  border-radius: 0 var(--i-r) var(--i-r) 0;
+}
+
+.abiertaPregunta {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--i-accent);
+  line-height: 1.4;
+}
+
+.abiertaRespuesta {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--i-text);
+  white-space: pre-wrap;
+}
+
+/* ── Score color variants ── */
+.emerald {
+  color: var(--emerald);
+  background-color: var(--emerald-bg);
+}
+
+.sky {
+  color: var(--sky);
+  background-color: var(--sky-bg);
+}
+
+.amber {
+  color: var(--amber);
+  background-color: var(--amber-bg);
+}
+
+.rose {
+  color: var(--rose);
+  background-color: var(--rose-bg);
+}
+
+/* catBarRelleno no usa background-color sino background,
+   así que necesita clases específicas para el color de la barra */
+.catBarRelleno.emerald { background: var(--emerald); }
+.catBarRelleno.sky     { background: var(--sky); }
+.catBarRelleno.amber   { background: var(--amber); }
+.catBarRelleno.rose    { background: var(--rose); }
+
+@media (max-width: 600px) {
+  .catGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header {
+    padding: 1rem;
+    gap: 0.65rem;
+  }
+
+  .nombre {
+    font-size: 1rem;
+  }
+
+  .body {
+    padding: 1rem;
+  }
+}
