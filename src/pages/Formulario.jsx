@@ -12,6 +12,8 @@ import CategoryCard from '../components/CategoryCard'
 import LikertQuestion from '../components/LikertQuestion'
 import styles from './Formulario.module.css'
 
+const ENCUESTA_CERRADA = true
+
 const HOY = new Date().toISOString().slice(0, 10)
 
 function estadoInicial() {
@@ -60,6 +62,19 @@ export default function Formulario() {
     } finally {
       setEnviando(false)
     }
+  }
+
+  if (ENCUESTA_CERRADA) {
+    return (
+      <div className={styles.confirmacion}>
+        <div className={styles.checkCirculo}>🔒</div>
+        <h1>Encuesta cerrada</h1>
+        <p>
+          El período de autoevaluación ha concluido. Gracias a todos los
+          profesionales que participaron.
+        </p>
+      </div>
+    )
   }
 
   if (enviado) {
